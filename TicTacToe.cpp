@@ -873,7 +873,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
 	Window = CreateWindowExW(
 		WS_EX_CLIENTEDGE,
 		CLASS_NAME,
-		L"Tick Tack Toe",
+		L"Tic Tac Toe",
 		WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX,
 		(GetSystemMetrics(SM_CXSCREEN) - (windowRect.right - windowRect.left)) / 2,
 		(GetSystemMetrics(SM_CYSCREEN) - (windowRect.bottom - windowRect.top)) / 2,
