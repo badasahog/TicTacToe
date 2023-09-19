@@ -1,5 +1,7 @@
 /*
 * (C) 2023 badasahog. All Rights Reserved
+* The above copyright notice shall be included in
+* all copies or substantial portions of the Software.
 */
 
 #include <Windows.h>
@@ -218,8 +220,8 @@ void DrawMenu() noexcept
 			.right = (FLOAT)windowWidth,
 			.bottom = windowHeight * .8f
 		};
-		renderTarget->DrawTextW(L"TICK           TOE", 18, TitleTextFormat.Get(), textArea, PlayerBrush.Get());
-		renderTarget->DrawTextW(L"TACK", 4, TitleTextFormat.Get(), textArea, CPUBrush.Get());
+		renderTarget->DrawTextW(L" TIC          TOE", 17, TitleTextFormat.Get(), textArea, PlayerBrush.Get());
+		renderTarget->DrawTextW(L"TAC", 3, TitleTextFormat.Get(), textArea, CPUBrush.Get());
 	}
 
 	POINT cursorPos;
@@ -977,6 +979,7 @@ LRESULT CALLBACK IdleProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		handleDpiChange();
 		break;
 	case WM_PAINT:
+		//todo: look into WM_SETREDRAW
 		Sleep(25);
 		break;
 	case WM_SIZE:
