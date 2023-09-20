@@ -979,7 +979,6 @@ LRESULT CALLBACK IdleProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		handleDpiChange();
 		break;
 	case WM_PAINT:
-		//todo: look into WM_SETREDRAW
 		Sleep(25);
 		break;
 	case WM_SIZE:
