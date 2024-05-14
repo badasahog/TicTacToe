@@ -17,10 +17,6 @@
 #error C++20 is required
 #endif
 
-#ifndef __has_cpp_attribute
-#error critical macro __has_cpp_attribute not defined
-#endif
-
 #if !__has_include(<Windows.h>)
 #error critital header Windows.h not found
 #endif
@@ -155,6 +151,9 @@ void CreateAssets() noexcept
 		D2D1::RenderTargetProperties(),
 		D2D1::HwndRenderTargetProperties(Window, size),
 		&renderTarget));
+
+	renderTarget->SetDpi(96, 96);
+
 
 	FATAL_ON_FAIL(renderTarget->CreateSolidColorBrush(D2D1::ColorF(1.0f, 1.0f, 0.0f), &brush));
 	FATAL_ON_FAIL(renderTarget->CreateSolidColorBrush(D2D1::ColorF(0.0f, 0.0f, 1.0f), &PlayerBrush));
@@ -865,10 +864,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
 		.bottom = windowHeight + 50
 	};
 
-	FATAL_ON_FALSE(AdjustWindowRect(&windowRect, WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, TRUE));
-
-
-	// Create the window
+	FATAL_ON_FALSE(AdjustWindowRectEx(&windowRect, WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, TRUE, WS_EX_CLIENTEDGE));
 
 	Window = CreateWindowExW(
 		WS_EX_CLIENTEDGE,
@@ -929,6 +925,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
 
 void handleDpiChange() noexcept
 {
+	SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+
 	UINT dpi = GetDpiForSystem();
 
 	windowWidth = 6 * dpi;
